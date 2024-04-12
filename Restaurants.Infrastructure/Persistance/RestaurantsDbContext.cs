@@ -4,16 +4,20 @@ using Restaurants.Domain.Entities;
 
 namespace Restaurants.Infrastructure.Persistance
 {
-    internal class RestaurantsDbContext : DbContext
+    // using primary constructor
+    internal class RestaurantsDbContext(DbContextOptions<RestaurantsDbContext> options) : DbContext(options)
     {
+
+        // old constructor
+        //public RestaurantsDbContext(DbContextOptions<RestaurantsDbContext> options) : base(options)
+        //{
+
+        //}
         internal DbSet<Restaurant> Restaurants {get;set;}
 
         internal DbSet<Dish> Dishes { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Server=localhost;Database=RestaurantsDb;Trusted_Connection=True;TrustServerCertificate = True");
-        }
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

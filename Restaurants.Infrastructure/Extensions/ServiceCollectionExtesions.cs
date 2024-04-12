@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+
 using Restaurants.Infrastructure.Persistance;
+using Restaurants.Infrastructure.Seeders;
 
 namespace Restaurants.Infrastructure.Extensions
 {
@@ -14,6 +16,8 @@ namespace Restaurants.Infrastructure.Extensions
             {
                 options.UseSqlServer(connectionString);
             });
+
+            services.AddScoped<IRestaurantSeeder, RestaurantSeeder>();
         }
     }
 }

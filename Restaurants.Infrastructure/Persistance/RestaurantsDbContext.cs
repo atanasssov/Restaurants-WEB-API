@@ -14,5 +14,19 @@ namespace Restaurants.Infrastructure.Persistance
         {
             optionsBuilder.UseSqlServer(@"Server=localhost;Database=RestaurantsDb;Trusted_Connection=True;TrustServerCertificate = True");
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // Address table won't be seeded in the database 
+            modelBuilder.Entity<Restaurant>()
+                .OwnsOne(r => r.Address);
+
+            modelBuilder.Entity<Restaurant>()
+                .HasMany(r => r.Dishes)
+                .WithOne()
+                .HasForeignKey(d => d.RestaurantId);
+        }
     }
 }

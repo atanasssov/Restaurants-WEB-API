@@ -14,5 +14,13 @@ namespace Restaurants.Application.Restaurants
             var restaurants = await restaurantsRepository.GetAllAsync();
             return restaurants;
         }
+
+        public async Task<Restaurant?> GetById(int id)
+        {
+            logger.LogInformation($"Getting restaurants {id}");
+            var restaurant = await restaurantsRepository.GetByIdAsync(id);
+
+            return restaurant;
+        }
     }
 }

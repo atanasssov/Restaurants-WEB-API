@@ -17,15 +17,15 @@ namespace Restaurants.API.Controllers
 
         // Get a restaurant by id
         [HttpGet("{id}")]
-        //[Route("{id}")] // the same with [HttpGet("{id}")]
+        //[Route("{id}")] && [HttpGet] are equal to [HttpGet("{id}")]
         public async Task<IActionResult> GetById([FromRoute]int id)
         {
             var restaurant = await restaurantsService.GetById(id);
             if(restaurant is null)
                 return NotFound();
             
-
             return Ok(restaurant);
         }
+
     }
 }

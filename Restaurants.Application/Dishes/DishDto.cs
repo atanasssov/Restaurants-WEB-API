@@ -12,21 +12,5 @@ namespace Restaurants.Application.Dishes
         public decimal Price { get; set; }
         public int? KiloCalories { get; set; }
 
-        /// <summary>
-        /// This static method maps Dish Entity to a DishDto
-        /// </summary>
-        /// <param name="dish"></param>
-        /// <returns>DishDto or null</returns>
-        public static DishDto FromEntity(Dish dish)
-        {
-            return new DishDto()
-            {
-                Id= dish.Id,
-                Name = dish.Name,
-                Description = dish.Description,
-                Price = dish.Price,
-                KiloCalories = dish.KiloCalories
-            };
-        }
     }
 }

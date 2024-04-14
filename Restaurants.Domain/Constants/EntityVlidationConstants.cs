@@ -4,11 +4,18 @@
     {
         public static class Restaurant
         {
+            public const int NameMinLength = 3;
             public const int NameMaxLength = 120;
 
+            public const int DescriptionMinLength = 10;
             public const int DescriptionMaxLength = 800;
 
+            public const int CategoryMinLength = 3;
             public const int CategoryMaxLength = 60;
+
+            public const string EmailValidationErrorMessage = "Please provide a valid email address!";
+
+            public const string PhoneValidationErrorMessage = "Please provide a valid email phone number!";
         }
 
         public static class Dish

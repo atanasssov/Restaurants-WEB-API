@@ -16,6 +16,8 @@
             public const string EmailValidationErrorMessage = "Please provide a valid email address!";
 
             public const string PhoneValidationErrorMessage = "Please provide a valid email phone number!";
+
+            public const string PostalCodeErrorMessage = "Please provide a valid postal code (XXXX)!)";
         }
 
         public static class Dish

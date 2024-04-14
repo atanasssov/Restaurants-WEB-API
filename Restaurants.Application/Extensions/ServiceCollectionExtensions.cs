@@ -1,7 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+
 using Restaurants.Application.Restaurants;
-using Restaurants.Domain.Repositories;
 
 namespace Restaurants.Application.Extensions
 {
@@ -11,6 +10,7 @@ namespace Restaurants.Application.Extensions
         {
             
             services.AddScoped<IRestaurantsService, RestaurantsService>();
+            services.AddAutoMapper(typeof(ServiceCollectionExtensions).Assembly);
         }
     }
 }

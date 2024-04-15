@@ -36,5 +36,10 @@ namespace Restaurants.Infrastructure.Repositories
             dbContext.Remove(entity);
             await dbContext.SaveChangesAsync();
         }
+
+        public async Task SaveChanges()
+        {
+            await dbContext.SaveChangesAsync();
+        }
     }
 }

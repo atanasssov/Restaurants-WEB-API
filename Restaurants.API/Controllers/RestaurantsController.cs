@@ -6,6 +6,7 @@ using Restaurants.Application.Restaurants.Commands.CreateRestaurant;
 using Restaurants.Application.Restaurants.Commands.DeleteRestaurant;
 
 using MediatR;
+using Restaurants.Application.Restaurants.Commands.UpdateRestaurant;
 
 namespace Restaurants.API.Controllers
 {
@@ -32,6 +33,19 @@ namespace Restaurants.API.Controllers
                 return NotFound();
 
             return Ok(restaurant);
+        }
+
+        // Update a restaurant by id
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> UpdateRestaurant([FromRoute] int id, UpdateRestaurantCommand command)
+        {
+            command.Id = id;
+            var isUpdated = await mediator.Send(command);
+
+            if (isUpdated)
+                return NoContent();
+
+            return NotFound();
         }
 
         // Delete a restaurant by id

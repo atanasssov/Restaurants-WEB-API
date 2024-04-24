@@ -35,8 +35,6 @@ namespace Restaurants.Application.Restaurants.Commands.CreateRestaurant
                .WithMessage(PostalCodeErrorMessage);
 
 
-
-
         }
     }
 }

@@ -2,7 +2,6 @@
 using Restaurants.Application.Restaurants.Commands.CreateRestaurant;
 using Restaurants.Application.Restaurants.Commands.UpdateRestaurant;
 
-
 using AutoMapper;
 
 

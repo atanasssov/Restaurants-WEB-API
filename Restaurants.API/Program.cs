@@ -13,6 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
+builder.Services.AddScoped<RequestTimeLoggingMiddleware>();
 
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
@@ -45,6 +46,8 @@ await seeder.Seed();
 // adds information which endpoint is hit and the status code
 
 app.UseMiddleware<ErrorHandlingMiddleware>();
+app.UseMiddleware<RequestTimeLoggingMiddleware>();
+
 app.UseSerilogRequestLogging();
 
 if (app.Environment.IsDevelopment())

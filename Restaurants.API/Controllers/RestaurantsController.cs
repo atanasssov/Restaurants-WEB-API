@@ -68,6 +68,5 @@ namespace Restaurants.API.Controllers
             return CreatedAtAction(nameof(GetById), new { id }, null);
         }
 
-
     }
 }

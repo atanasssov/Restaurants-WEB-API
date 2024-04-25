@@ -4,9 +4,6 @@ using Restaurants.Application.Restaurants.Commands.UpdateRestaurant;
 
 using AutoMapper;
 
-
-
-
 namespace Restaurants.Application.Restaurants.Dtos
 {
     public class RestaurantsProfile : Profile

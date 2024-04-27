@@ -4,18 +4,54 @@
 
 
 
-GET {{Restaurants.API_HostAddress}}/api/restaurants/122
+
+
+POST {{Restaurants.API_HostAddress}}/api/restaurants/1/dishes
+Content-Type: application/json
+
+{
+  "Name": "Some name",
+  "Price": -2,
+  "KiloCalories": -10,
+  
+}
 
 ###
 
-GET {{Restaurants.API_HostAddress}}/api/restaurants
+###
+
+POST {{Restaurants.API_HostAddress}}/api/restaurants/3/dishes
+Content-Type: application/json
+
+{
+  "Name": "Some name",
+  "Description": "Some description",
+  "Price": -2,
+  "KiloCalories": -10,
+}
 
 ###
 
-GET {{Restaurants.API_HostAddress}}/api/restaurants
+POST {{Restaurants.API_HostAddress}}/api/restaurants/1/dishes
+Content-Type: application/json
+
+{
+   "Name": "Some name",
+  "Description": "Some description",
+  "Price": -2,
+  "KiloCalories": -10
+}
 
 ###
 
-GET {{Restaurants.API_HostAddress}}/api/restaurants/110
+POST {{Restaurants.API_HostAddress}}/api/restaurants/1/dishes
+Content-Type: application/json
+
+{
+  "Name": "S",
+  "Description": "desc",
+  "Price": -2,
+  "KiloCalories": -10
+}
 
 ###

@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Options;
 using Restaurants.Domain.Entities;
 
-namespace Restaurants.Application.Dishes
+namespace Restaurants.Application.Dishes.Dtos
 {
     public class DishDto
     {

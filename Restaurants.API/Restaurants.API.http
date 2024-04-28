@@ -1,35 +1,3 @@
 @Restaurants.API_HostAddress = https://localhost:7204
 
 
-
-
-
-
-
-POST {{Restaurants.API_HostAddress}}/api/restaurants/1/dishes
-Content-Type: application/json
-
-{
-  "Name": "Some name",
-  "Price": -2,
-  "KiloCalories": -10,
-  
-}
-
-###
-POST {{Restaurants.API_HostAddress}}/register/
-Content-Type: application/json
-
-{
-  "email": "testuser@test.com",
-  "password": "Password1!"
-}
-
-###
-POST {{Restaurants.API_HostAddress}}/login/
-Content-Type: application/json
-{
-  "email": "testuser@test.com",
-  "password": "Password12!"
-}
-

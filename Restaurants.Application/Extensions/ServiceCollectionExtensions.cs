@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-using Restaurants.Application.Restaurants;
+using Restaurants.Application.Users;
 
 using FluentValidation;
 using FluentValidation.AspNetCore;
-using Restaurants.Application.User;
+
 
 namespace Restaurants.Application.Extensions
 {

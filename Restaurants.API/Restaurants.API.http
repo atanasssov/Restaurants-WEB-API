@@ -73,3 +73,36 @@ GET {{Restaurants.API_HostAddress}}/api/restaurants/100
 DELETE {{Restaurants.API_HostAddress}}/api/restaurants/6/dishes
 
 ###
+
+POST {{Restaurants.API_HostAddress}}/api/restaurants
+Content-Type: application/json
+
+{
+  //CreateRestaurantCommand
+}
+
+###
+
+POST {{Restaurants.API_HostAddress}}/api/restaurants
+Content-Type: application/json
+
+{
+  //CreateRestaurantCommand
+}
+
+###
+
+POST {{Restaurants.API_HostAddress}}/api/restaurants/5/dishes
+Content-Type: application/json
+
+{
+   "name": "pizza with ham",
+  "description": "this pizza has also corn and cheese",
+  "price": 11,
+  "kiloCalories": 600,
+  "restaurantId": 0
+}
+
+###
+
+GET https://localhost:7204/api/restaurants/5/dishes/11

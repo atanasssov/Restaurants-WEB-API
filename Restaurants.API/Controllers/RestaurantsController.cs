@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 using Restaurants.Application.Restaurants.Queries.GetAllRestaurants;
 using Restaurants.Application.Restaurants.Queries.GetRestaurantById;
@@ -9,14 +10,17 @@ using Restaurants.Application.Restaurants.Dtos;
 
 using MediatR;
 
+
 namespace Restaurants.API.Controllers
 {
     [ApiController]
     [Route("api/restaurants")]
+    [Authorize]
     public class RestaurantsController(IMediator mediator) : ControllerBase
     {
         // Get all restaurants
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<RestaurantDto>>> GetAll()
 
         {

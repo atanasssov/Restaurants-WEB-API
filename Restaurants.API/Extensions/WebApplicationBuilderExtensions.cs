@@ -1,5 +1,7 @@
 ﻿using Microsoft.OpenApi.Models;
+
 using Restaurants.API.Middlewares;
+
 using Serilog;
 using Serilog.Events;
 
@@ -9,6 +11,7 @@ namespace Restaurants.API.Extensions
     {
         public static void AddPresentation(this WebApplicationBuilder builder)
         {
+            builder.Services.AddAuthentication();
             builder.Services.AddControllers();
 
             builder.Services.AddSwaggerGen(c =>

@@ -7,8 +7,10 @@ using Restaurants.Application.Restaurants.Commands.CreateRestaurant;
 using Restaurants.Application.Restaurants.Commands.DeleteRestaurant;
 using Restaurants.Application.Restaurants.Commands.UpdateRestaurant;
 using Restaurants.Application.Restaurants.Dtos;
+using Restaurants.Domain.Constants;
 
 using MediatR;
+
 
 
 namespace Restaurants.API.Controllers
@@ -66,9 +68,10 @@ namespace Restaurants.API.Controllers
 
         // Post to create a new restaurant
         [HttpPost]
+        [Authorize(Roles = UserRoles.Owner)]
         public async Task<IActionResult> CreateRestaurant(CreateRestaurantCommand command)
         {
-
+            
             int id = await mediator.Send(command);
             return CreatedAtAction(nameof(GetById), new { id }, null);
         }

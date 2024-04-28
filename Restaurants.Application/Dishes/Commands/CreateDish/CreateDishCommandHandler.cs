@@ -20,7 +20,7 @@ namespace Restaurants.Application.Dishes.Commands.CreateDish
 
             var restaurant = await restaurantsRepository.GetByIdAsync(request.RestaurantId);
             
-            if (restaurant == null) throw new NotFoundException(nameof(Restaurant), request.RestaurantId.ToString());
+            if (restaurant == null) throw new NotFoundException(nameof(Restaurant), request.RestaurantId.ToString());   
 
 
             var dish = mapper.Map<Dish>(request);

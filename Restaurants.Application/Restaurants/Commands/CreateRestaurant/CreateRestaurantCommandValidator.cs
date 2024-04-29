@@ -20,18 +20,21 @@ namespace Restaurants.Application.Restaurants.Commands.CreateRestaurant
                 .NotEmpty()
                 .Length(CategoryMinLength, CategoryMaxLength);
 
-            RuleFor(dto => dto.ContactEmail)
-               .EmailAddress()
-               .WithMessage(EmailValidationErrorMessage);
+          
 
             // applies a regular expression pattern to validate the phone number. This pattern allows for an optional leading +, followed by one digit between 1 and 9, and then 5 to 14 digits. 
-            RuleFor(dto => dto.ContactNumber)
-              .Matches(@"^\+?[1-9]\d{5,14}$")
-              .WithMessage(PhoneValidationErrorMessage);
+            RuleFor(dto => dto.ContactEmail)
+                .Matches(@"^\+?[1-9]\d{5,14}$")
+                 .When(dto => dto.ContactEmail != null)
+                 .WithMessage(EmailValidationErrorMessage)
+                 .When(dto => !string.IsNullOrEmpty(dto.ContactEmail));
+              
 
             // regex for 4 number codes only  - ex: [9300]
             RuleFor(dto => dto.PostalCode)
                .Matches(@"^\d{4}$")
+               .When(dto => !string.IsNullOrEmpty(dto.ContactNumber))
+               // the rule applies only if not null
                .WithMessage(PostalCodeErrorMessage);
 
 

@@ -32,6 +32,14 @@ namespace Restaurants.Infrastructure.Extensions
             services.AddScoped<IRestaurantSeeder, RestaurantSeeder>();
             services.AddScoped<IRestaurantsRepository, RestaurantsRepository>();
             services.AddScoped<IDishesRepository, DishesRepository>();
+
+            // Add policy that allows users with an existing "Nationality" claim to get a certain resource
+            //services.AddAuthorizationBuilder()
+            //    .AddPolicy("HasNationality", builder => builder.RequireClaim("Nationality"));
+
+            // Add policy that allows users with an existing "Nationality" claim with a value = Polish to get a certain resource
+            services.AddAuthorizationBuilder()
+               .AddPolicy(PolicyNames.HasNationality, builder => builder.RequireClaim(AppClaimTypes.Nationality, "Polish"));
         }
     }
 }

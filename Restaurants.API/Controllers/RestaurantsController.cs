@@ -8,9 +8,9 @@ using Restaurants.Application.Restaurants.Commands.DeleteRestaurant;
 using Restaurants.Application.Restaurants.Commands.UpdateRestaurant;
 using Restaurants.Application.Restaurants.Dtos;
 using Restaurants.Domain.Constants;
+using Restaurants.Infrastructure.Authorization;
 
 using MediatR;
-
 
 
 namespace Restaurants.API.Controllers
@@ -32,6 +32,7 @@ namespace Restaurants.API.Controllers
 
         // Get a restaurant by id
         [HttpGet("{id}")]
+        [Authorize(Policy = PolicyNames.HasNationality)]
         //[Route("{id}")] && [HttpGet] are equal to [HttpGet("{id}")]
         public async Task<ActionResult<RestaurantDto?>> GetById([FromRoute] int id)
         {

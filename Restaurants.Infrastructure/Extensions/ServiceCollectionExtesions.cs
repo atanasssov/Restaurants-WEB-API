@@ -2,8 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+
 using Restaurants.Domain.Entities;
 using Restaurants.Domain.Repositories;
+using Restaurants.Infrastructure.Authorization;
 using Restaurants.Infrastructure.Persistance;
 using Restaurants.Infrastructure.Repositories;
 using Restaurants.Infrastructure.Seeders;
@@ -23,7 +25,8 @@ namespace Restaurants.Infrastructure.Extensions
 
 
             services.AddIdentityApiEndpoints<User>()
-                .AddRoles<IdentityRole>()   // identity framework is enabled to support identity roles so that they are included in the user claims         
+                .AddRoles<IdentityRole>()   // identity framework is enabled to support identity roles so that they are included in the user claims
+                .AddClaimsPrincipalFactory<RestaurantsUserClaimsPrincipalFactory>()
                 .AddEntityFrameworkStores<RestaurantsDbContext>();
 
             services.AddScoped<IRestaurantSeeder, RestaurantSeeder>();

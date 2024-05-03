@@ -1,12 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 using Restaurants.Application.Dishes.Commands.CreateDish;
 using Restaurants.Application.Dishes.Dtos;
 using Restaurants.Application.Dishes.Queries.GetDishesForRestaurant;
 using Restaurants.Application.Dishes.Queries.GetDishByIdForRestaurant;
+using Restaurants.Application.Dishes.Commands.DeleteDishesForRestaurant;
 
 using MediatR;
-using Restaurants.Application.Dishes.Commands.DeleteDishesForRestaurant;
+using Restaurants.Infrastructure.Authorization;
 
 
 
@@ -15,6 +17,7 @@ namespace Restaurants.API.Controllers
     // Post to create a new dish
     [Route("api/restaurants/{restaurantId}/dishes")]
     [ApiController]
+    [Authorize]
     public class DishesController(IMediator mediator) : ControllerBase
     {
         [HttpPost]
@@ -27,6 +30,7 @@ namespace Restaurants.API.Controllers
 
         //  Get all dishes for a restaurant
         [HttpGet]
+        [Authorize(Policy = PolicyNames.AtLeast20)]
         public async Task<ActionResult<IEnumerable<DishDto>>> GetAllForRestaurant([FromRoute] int restaurantId)
         {
             var dishes = await mediator.Send(new GetDishesForRestaurantQuery(restaurantId));

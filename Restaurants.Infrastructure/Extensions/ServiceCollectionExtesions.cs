@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -6,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Restaurants.Domain.Entities;
 using Restaurants.Domain.Repositories;
 using Restaurants.Infrastructure.Authorization;
+using Restaurants.Infrastructure.Authorization.Requirements;
 using Restaurants.Infrastructure.Persistance;
 using Restaurants.Infrastructure.Repositories;
 using Restaurants.Infrastructure.Seeders;
@@ -37,9 +39,16 @@ namespace Restaurants.Infrastructure.Extensions
             //services.AddAuthorizationBuilder()
             //    .AddPolicy("HasNationality", builder => builder.RequireClaim("Nationality"));
 
-            // Add policy that allows users with an existing "Nationality" claim with a value = Polish to get a certain resource
+            // Add policy that allows users with an existing "Nationality" claim with a value = Polish or German to get a certain resource
             services.AddAuthorizationBuilder()
-               .AddPolicy(PolicyNames.HasNationality, builder => builder.RequireClaim(AppClaimTypes.Nationality, "Polish"));
+               .AddPolicy(PolicyNames.HasNationality,
+                        builder => builder.RequireClaim(AppClaimTypes.Nationality, "Polish", "German"))
+               .AddPolicy(PolicyNames.AtLeast20,
+                        builder => builder.AddRequirements(new MinimumAgeRequirement(20)));
+
+            services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();
+                        
+
         }
     }
 }

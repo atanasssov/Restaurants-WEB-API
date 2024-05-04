@@ -5,12 +5,15 @@ using Restaurants.Domain.Exceptions;
 using Restaurants.Domain.Repositories;
 
 using MediatR;
+using Restaurants.Domain.Constants;
+using Restaurants.Domain.Interfaces;
 
 namespace Restaurants.Application.Dishes.Commands.DeleteDishesForRestaurant
 {
     public class DeleteDishesForRestaurantCommandHandler(ILogger<DeleteDishesForRestaurantCommandHandler> logger,
      IRestaurantsRepository restaurantsRepository,
-     IDishesRepository dishesRepository) : IRequestHandler<DeleteDishesForRestaurantCommand>
+     IDishesRepository dishesRepository,
+     IRestaurantAuthorizationService restaurantAuthorizationService) : IRequestHandler<DeleteDishesForRestaurantCommand>
     {
         public async Task Handle(DeleteDishesForRestaurantCommand request, CancellationToken cancellationToken)
         {
@@ -19,7 +22,9 @@ namespace Restaurants.Application.Dishes.Commands.DeleteDishesForRestaurant
             var restaurant = await restaurantsRepository.GetByIdAsync(request.RestaurantId);
             if (restaurant == null) throw new NotFoundException(nameof(Restaurant), request.RestaurantId.ToString());
 
-         
+
+            if (!restaurantAuthorizationService.Authorize(restaurant, ResourceOperation.Delete))
+                throw new ForbidException();
 
             await dishesRepository.Delete(restaurant.Dishes);
         }

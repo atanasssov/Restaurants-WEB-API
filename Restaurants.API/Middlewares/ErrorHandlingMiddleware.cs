@@ -1,5 +1,4 @@
-﻿
-using Restaurants.Domain.Exceptions;
+﻿using Restaurants.Domain.Exceptions;
 
 namespace Restaurants.API.Middlewares
 {
@@ -18,6 +17,12 @@ namespace Restaurants.API.Middlewares
                 await context.Response.WriteAsync(notFound.Message);
 
                 logger.LogWarning(notFound.Message);
+            }
+
+            catch (ForbidException)
+            {
+                context.Response.StatusCode = 403;
+                await context.Response.WriteAsync("Access forbidden!");
             }
             catch (Exception ex)
 			{

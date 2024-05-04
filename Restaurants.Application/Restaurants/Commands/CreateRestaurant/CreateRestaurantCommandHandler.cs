@@ -24,6 +24,7 @@ namespace Restaurants.Application.Restaurants.Commands.CreateRestaurant
                 currentUser.Id,
                 request);
 
+
             var restaurant = mapper.Map<Restaurant>(request);
             restaurant.OwnerId = currentUser.Id;
 

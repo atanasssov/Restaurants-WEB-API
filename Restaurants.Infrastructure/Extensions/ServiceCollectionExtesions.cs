@@ -43,7 +43,7 @@ namespace Restaurants.Infrastructure.Extensions
             services.AddAuthorizationBuilder()
                .AddPolicy(PolicyNames.HasNationality,
                         builder => builder.RequireClaim(AppClaimTypes.Nationality, "Polish", "German"))
-               .AddPolicy(PolicyNames.AtLeast20,
+               .AddPolicy(PolicyNames.AtLeast20, // add custom AtLeast20 Policy
                         builder => builder.AddRequirements(new MinimumAgeRequirement(20)));
 
             services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();

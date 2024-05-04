@@ -44,5 +44,11 @@ namespace Restaurants.Domain.Entities
 
         [Comment("Restaurant dishes list")]
         public List<Dish> Dishes { get; set; } = new();
+
+        [Comment("User which is owner of the restaurant")]
+        public User Owner { get; set; } = default!;
+
+        [Comment("Identifier of the owner")]
+        public string OwnerId { get; set; } = default!;
     }
 }

@@ -1,11 +1,10 @@
-﻿using Restaurants.Application.Restaurants.Dtos;
+﻿using Microsoft.Extensions.Logging;
 
-using MediatR;
-using Microsoft.Extensions.Logging;
-
+using Restaurants.Application.Restaurants.Dtos;
 using Restaurants.Domain.Repositories;
 
 using AutoMapper;
+using MediatR;
 
 namespace Restaurants.Application.Restaurants.Queries.GetAllRestaurants
 {
@@ -16,7 +15,7 @@ namespace Restaurants.Application.Restaurants.Queries.GetAllRestaurants
         public async Task<IEnumerable<RestaurantDto>> Handle(GetAllRestaurantsQuery request, CancellationToken cancellationToken)
         {
             logger.LogInformation("Getting all restaurants");
-            var restaurants = await restaurantsRepository.GetAllAsync();
+            var restaurants = await restaurantsRepository.GetAllMatchingAsync(request.SearchPhrase);
 
             var restaurantsDtos = mapper.Map<IEnumerable<RestaurantDto>>(restaurants);
 

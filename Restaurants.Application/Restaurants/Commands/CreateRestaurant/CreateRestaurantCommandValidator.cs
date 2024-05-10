@@ -33,13 +33,17 @@ namespace Restaurants.Application.Restaurants.Commands.CreateRestaurant
                  .When(dto => !string.IsNullOrEmpty(dto.ContactNumber));
               
 
-            // regex for 4 number codes only  - ex: [9300]
-            RuleFor(dto => dto.PostalCode)
-               .Matches(@"^\d{4}$")
-               .When(dto => !string.IsNullOrEmpty(dto.ContactNumber))
-               // the rule applies only if not null
-               .WithMessage(PostalCodeErrorMessage);
+            //// regex for 4 number codes only  - ex: [9300]
+            //RuleFor(dto => dto.PostalCode)
+            //   .Matches(@"^\d{4}$")
+            //   .When(dto => !string.IsNullOrEmpty(dto.ContactNumber))
+            //   // the rule applies only if not null
+            //   .WithMessage(PostalCodeErrorMessage);
 
+            RuleFor(dto => dto.PostalCode)
+            .NotEmpty()
+            .Matches(@"^\d{4}$")
+            .WithMessage(PostalCodeErrorMessage);
 
         }
     }

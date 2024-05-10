@@ -2,8 +2,9 @@
 
 using FluentAssertions;
 using Xunit;
+using Restaurants.Application.Users;
 
-namespace Restaurants.Application.Users.Tests
+namespace Restaurants.Application.Tests.Users
 {
     public class CurrentUserTests
     {
@@ -26,7 +27,7 @@ namespace Restaurants.Application.Users.Tests
 
         }
 
-        
+
         [Fact()]
         public void IsInRole_WithNoMatchingRole_ShouldReturnFalse()
         {
